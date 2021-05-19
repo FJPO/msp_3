@@ -17,7 +17,7 @@
             </classpath>
         </javac>
         <echo message="Compile finished"/>
-<!--        <ant antfile="git.xml" target="history"/>-->
+        <ant antfile="git.xml" target="history"/>
         <condition property="RunGitDiff" value="true">
             <and>
                 <isset property="compile.Success"/>

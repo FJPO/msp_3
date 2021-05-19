@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="clean" default="clean">
+
+    <property file="build.properties"/>
+
+    <target name = "clean">
+        <delete dir="${out}"/>
+        <delete file="${GitDiff}"/>
+        <echo message="finished"/>
+    </target>
+</project>

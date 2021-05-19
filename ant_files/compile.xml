@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="clean" default="compile">
+    <property file="build.properties"/>
+
+
+    <target name = "compile">
+        <echo message="Compile started"/>
+        <mkdir dir="../for_msp3/out/classes"/>
+        <javac includeantruntime="false" fork="true" encoding="UTF-8"
+               srcdir="${ProjectDir}/src" destdir="${out}/classes" failonerror="false" updatedproperty="compile.Success">
+            <classpath>
+                <pathelement location="/res/jars/junit-4.13.2.jar"/>
+                <pathelement location="/res/jars/system-rules-1.19.0.jar"/>
+                <pathelement location="/res/jars/hamcrest-core-1.3.jar"/>
+                <pathelement location="/for_msp3/out"/>
+            </classpath>
+        </javac>
+        <echo message="Compile finished"/>
+        <ant antfile="git.xml" target="history"/>
+        <condition property="RunGitDiff" value="true">
+            <and>
+                <isset property="compile.Success"/>
+                <isset property="gitWentBack"/>
+            </and>
+        </condition>
+        <ant antfile="git.xml" target="gitDiff"/>
+
+    </target>
+</project>

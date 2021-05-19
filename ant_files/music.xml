@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="music" default="music">
+    <property file="build.properties"/>
+
+
+    <target name="music" unless="music.Played">
+        <sound>
+            <success source="${SuccessMusic}"/>
+            <fail source="${FailureMusic}"/>
+        </sound>
+        <property name="music.Played" value="true"/>
+    </target>
+
+</project>

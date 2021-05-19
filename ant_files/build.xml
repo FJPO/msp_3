@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name = "mspLab" basedir = "." default="build">
+
+    <property file="build.properties"/>
+
+
+    <include file="music.xml" as="Music"/>
+    <include file="test.xml" as="Test"/>
+    <include file="compile.xml" as="Compile"/>
+    <include file="clean.xml" as="Clean"/>
+
+    <target name = "build" depends = "Clean.clean, Compile.compile, Test.test, Music.music">
+        <mkdir dir="${out}/jar"/>
+        <jar destfile="${out}/jar/${ProjectName}.jar" basedir="${out}/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Classes.Main"/>
+                <attribute name="Manifest-version" value="1.0"/>
+            </manifest>
+        </jar>
+    </target>
+
+
+
+</project>

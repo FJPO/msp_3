@@ -6,8 +6,9 @@
     <target name = "compile">
         <echo message="Compile started"/>
         <mkdir dir="../for_msp3/out/classes"/>
+
         <javac includeantruntime="false" fork="true" encoding="UTF-8"
-               srcdir="${ProjectDir}/src" destdir="${out}/classes" failonerror="false" executable="/usr/jdk/jdk1.8.0/bin/javac" updatedproperty="compile.Success">
+               srcdir="${ProjectDir}/src" destdir="${out}/classes" executable="${JAVA_HOME}/bin/javac" failonerror="false"  updatedproperty="compile.Success">
             <classpath>
                 <pathelement location="${jars}/junit-4.13.2.jar"/>
                 <pathelement location="${jars}/system-rules-1.19.0.jar"/>
@@ -16,7 +17,7 @@
             </classpath>
         </javac>
         <echo message="Compile finished"/>
-        <ant antfile="git.xml" target="history"/>
+<!--        <ant antfile="git.xml" target="history"/>-->
         <condition property="RunGitDiff" value="true">
             <and>
                 <isset property="compile.Success"/>
